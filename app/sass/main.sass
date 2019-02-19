@@ -2,21 +2,12 @@
 @import "libs"
 @import "vars"
 
-*::-webkit-input-placeholder
+::placeholder
 	color: #666
 	opacity: 1
-
-*:-moz-placeholder
-	color: #666
-	opacity: 1
-
-*::-moz-placeholder
-	color: #666
-	opacity: 1
-
-*:-ms-input-placeholder
-	color: #666
-	opacity: 1
+::selection
+	background-color: $accent
+	color: #fff
 
 body input:focus:required:invalid,
 body textarea:focus:required:invalid
@@ -37,9 +28,12 @@ body
 
 	&.ishome
 		.site-header
-			min-height: 700px
+			min-height: 620px
 			height: 100vh
 			background-color: #151515
+			background-repeat: no-repeat
+			background-size: cover
+			background-position: center
 			.top-line
 				padding-top: 40px
 				position: absolute
@@ -87,6 +81,7 @@ body
 					left: 15px
 					top: 8px
 
+
 .type-header
 	background-image: url(../img/bg-2.jpg)
 	background-position: 0 22%
@@ -103,17 +98,20 @@ body
 
 section, header
 	position: relative
-	background-size: cover
-	background-position: center
 	background-color: #fff
 
 section
-	h2
-		text-transform: uppercase
-		font-size: 30px
-		font-weight: 800
+	padding: 5% 0
 	&.inverse
 		color: #fff
+h2
+	text-transform: uppercase
+	font-size: 30px
+	font-weight: 800
+	text-align: center
+	margin-bottom: 30px
+	+media-breakpoint-down(sm)
+		font-size: 24px
 
 h1, h2, h3, h4, h5, h6
 	line-height: 1.4
@@ -123,11 +121,23 @@ h1, h2, h3, h4, h5, h6
 		span
 			color: #fff
 
-.site-header
-	color: #fff
+.mb-30
+	margin-bottom: 20px
+	+media-breakpoint-down(sm)
+		margin-bottom: 10px
+
+.mb-56
+	margin-bottom: 60px
 
 .text-center
 	text-align: center
+.text-left
+	text-align: left
+
+.site-header
+	color: #fff
+.accent-c
+	color: $accent
 
 // Mmenu style
 html.mm-opened
@@ -222,8 +232,36 @@ a, button
 	position: relative
 	top: 0
 
-.flex-center
+
+.header-social
+	display: flex
+	position: absolute
+	right: 0
+	padding: 0 12.5px
+	height: 100%
+	border-left: rgba(255,255,255,.06) 1px solid
+	top: 0
+
+.soc
 	margin: auto
+	ul,li
+		margin: 0
+		padding: 0
+		list-style-type: none
+	a
+		color: #353535
+		font-size: 16px
+		display: block
+		background-color: rgba(255,255,255,.25)
+		width: 38px
+		height: 38px
+		text-align: center
+		line-height: 38px
+		border-radius: 10em
+		transition: background-color .25s ease
+		margin: 18px 0
+		&:hover
+			background-color: rgba(255,255,255,.4)
 
 .header-composition
 	text-align: center
@@ -274,7 +312,28 @@ a, button
 				margin-right: inherit
 				margin-left: 10px
 
-.top
+.header-contacts
+	position: absolute
+	bottom: 0
+	left: 0
+	border-top: rgba(255,255,255,.06) 1px solid
+	padding: 12.5px
+	width: 100%
+	background-color: rgba(#151515, .15)
+	font-weight: 300
+	font-size: 14px
+	text-align: center
+	.fa
+		margin-right: 5px
+		color: #555
+	>.container>.row>div:nth-child(2)
+		font-family: firasans
+
+.flex-center
+	margin: auto
+
+
+.top-button
 	position: fixed
 	bottom: 25px
 	background-color: #E0E0E0
@@ -314,6 +373,7 @@ a, button
 	text-align: center
 	position: relative
 	outline: none
+	cursor: pointer
 	transition: background-color .1s ease
 	&::after
 		transition: background-color .2s ease
@@ -371,8 +431,8 @@ input, textarea, select,
 .selectize-control.single .selectize-input.input-active, .selectize-input,
 .callback .selectize-input
 	background-color: transparent
-	border: rgba(0,0,0,.1) 1px solid
-	border-bottom: rgba(0,0,0,.1) 2px solid
+	border: rgba(0,0,0,.2) 1px solid
+	border-bottom: rgba(0,0,0,.2) 2px solid
 	border-radius: 2px
 	padding: 8px 22px
 	outline: none
@@ -430,152 +490,7 @@ select
 		font-size: 22px
 		margin-right: 3px
 
-.header-social
-	display: flex
-	position: absolute
-	right: 0
-	padding: 0 12.5px
-	height: 100%
-	border-left: rgba(255,255,255,.06) 1px solid
-	top: 0
-
-.soc
-	margin: auto
-	ul,li
-		margin: 0
-		padding: 0
-		list-style-type: none
-	a
-		color: #353535
-		font-size: 16px
-		display: block
-		background-color: rgba(255,255,255,.25)
-		width: 38px
-		height: 38px
-		text-align: center
-		line-height: 38px
-		border-radius: 10em
-		transition: background-color .25s ease
-		margin: 18px 0
-		&:hover
-			background-color: rgba(255,255,255,.4)
-
-.header-contacts
-	position: absolute
-	bottom: 0
-	left: 0
-	border-top: rgba(255,255,255,.06) 1px solid
-	padding: 12.5px
-	width: 100%
-	background-color: rgba(#151515, .15)
-	font-weight: 300
-	font-size: 14px
-	.fa
-		margin-right: 5px
-		color: #555
-	>.container>.row>div:nth-child(2)
-		font-family: firasans
-		text-align: center
-
-$colors: $blue, $red, $accent
-@for $i from 1 through length($colors)
-	.carousel-services .owl-item:nth-child(#{length($colors)}n+#{$i}),
-	.carousel-services-aside .owl-item:nth-child(#{length($colors)}n+#{$i})
-		background-color: nth($colors, $i)
-
-.carousel-services-item
-	color: #fff
-	font-size: 18px
-	font-weight: 300
-	position: relative
-	display: flex
-	flex-direction: column-reverse
-
-.carousel-services
-	background-color: #151515
-	.owl-item
-		&:hover
-			.carousel-services-image
-				opacity: 1
-		.carousel-services-image
-			opacity: .7
-			transition: opacity .5s ease
-			background-size: cover
-			background-position: center
-		&:nth-child(2n+2)
-			.carousel-services-item
-				flex-direction: column
-		.carousel-logo
-			text-align: center
-			img
-				display: inline-block
-				width: 100px
-				height: auto
-	.owl-nav
-		position: absolute
-		top: 0
-		width: 100%
-		> div
-			width: 63.5px
-			height: 63.5px
-			background-color: #fff
-			color: #191919
-			position: absolute
-			text-align: center
-			line-height: 64px
-			font-size: 26px
-		.owl-prev
-			left: 0
-		.owl-next
-			right: 0
-	.owl-dots
-		display: none
-
-.carousel-services-content
-	position: relative
-	padding: 60px 10% 80px
-	display: flex
-
-.carousel-service-composition
-	margin: auto
-	text-align: center
-	width: 100%
-	h3
-		text-transform: uppercase
-		font-weight: 800
-		font-size: 28px
-		margin-top: 5px
-		line-height: 1.5
-		margin-bottom: 20px
-		span
-			font-weight: normal
-			font-size: 18px
-			display: block
-			font-weight: 300
-
-.owl-carousel .owl-nav.disabled
-	display: block
-
-.owl-carousel
-	.owl-item
-		backface-visibility: inherit
-
-.carousel-services-list
-	margin: 0
-	padding: 0
-	list-style-type: none
-	margin-bottom: 25px
-	li
-		border-bottom: 1px solid rgba(#000000, .1)
-		padding: 10px
-		&:last-child
-			border-bottom: none
-		strong
-			font-family: firasans
-			color: #4a4a4a
-		.fa
-			font-size: 14px
-
+		
 .section-overlay
 	&::before
 		content: ''
@@ -591,25 +506,27 @@ $colors: $blue, $red, $accent
 		position: relative
 
 .s
-	&-king, &-review, &-partners
-		padding: 5% 0
+
+	&-advantage, &-king, &-review, &-partners,
 		background-color: #151515
 		strong
 			color: $accent
 		p
 			margin: 30px 0
 	&-call
-		background-size: contain
+		background-size: cover
 		background-repeat: no-repeat
 		background-color: #fff
 		background-position: 25%
+		color: $dark
 		&::before
 			content: ''
 			width: 50%
 			right: 0
+			top: 0
 			position: absolute
 			height: 100%
-			background-color: rgba($accent, .92)
+			background-color: rgba(255,255,255, .82)
 	&-partners
 		&::before
 			background-color: #fff
@@ -619,35 +536,21 @@ $colors: $blue, $red, $accent
 
 .callback
 	padding: 25% 0
-	color: #fff
+	color: $dark
 	position: relative
 	input, textarea, select,
 	.selectize-control.single .selectize-input.input-active, .selectize-input
-		color: #fff
+		color: $dark
 		width: 100%
 		margin-top: 17px
-
-		&::-webkit-input-placeholder
-			color: #fff
-			opacity: 1
-		&:-moz-placeholder
-			color: #fff
-			opacity: 1
-		&::-moz-placeholder
-			color: #fff
-			opacity: 1
 		&:-ms-input-placeholder
-			color: #fff
+			color: $dark
+			opacity: 1
 
 		option
 			color: #222
 	button
 		margin-top: 40px
-
-	&-logo
-		img
-			width: 100px
-			height: auto
 	.formhead
 		margin-top: 0
 		line-height: 1.5
@@ -681,21 +584,24 @@ $colors: $blue, $red, $accent
 
 .fotorama
 	background-color: rgba(#151515, .4)
+	+media-breakpoint-down(md)
+		max-width: 653px
 .fotorama__nav
-	&-wrap
-		bottom: 15px
-		position: absolute
-		padding: 0 30px
-		width: 100%
+	// &-wrap
+	// 	bottom: 15px
+	// 	position: absolute
+	// 	padding: 0 30px
+	// 	width: 100%
 .fotorama__thumb
-	border: 4px #fff solid
+	// border: 4px #fff solid
+	border-color: $accent
 	transition: border-color .5s ease
 	&-border
-		border-color: #3d3c3c
+		border-color: $accent
 
 .fotorama__active
 	.fotorama__thumb
-		border-color: #3d3c3c
+		border-color: $accent
 
 .fotorama__nav:before
 	left: 0
@@ -757,8 +663,7 @@ $colors: $blue, $red, $accent
 			background-color: $accent
 			transform: scale(1.3)
 
-.specialization
-	padding: 15px 0
+.s-specialization
 	background: #eee
 	.mb-40
 		margin-bottom: 40px
@@ -773,6 +678,7 @@ $colors: $blue, $red, $accent
 			background-size: cover
 		img
 			transition: .7s all ease
+			width: 100%
 		&:hover
 			img
 				transform: translateY(-15px)
@@ -783,8 +689,12 @@ $colors: $blue, $red, $accent
 			h3
 				color: #ba8f4d
 	h3
+		margin-top: 20px
+		margin-bottom: 10px
 		color: #fff
 		transition: .7s all ease
+	h2
+		margin-bottom: 20px
 	.btn
 		padding: 5px 10px
 		background: #c59d5f
@@ -809,7 +719,81 @@ $colors: $blue, $red, $accent
 				border-top: 8px solid #000
 
 
+.s-price
+	background: #e8e8e8
+	.wrapper
+		position: relative
+		background-color: rgba( 255,255,255,0.9)
+		padding: 34px 7px 25px
+		border: 0 solid #000
+		box-shadow: 3px 12px 31px -12px rgba(0,0,0,.75)
+		position: relative
+		color: #404040
+		text-align: center
+		+media-breakpoint-down(sm)
+			margin-bottom: 40px
+		img
+			transition: .7s all ease
+			width: 150px
+			margin-bottom: 20px
+		.btn
+			padding: 5px 20px
+			background: #c59d5f
+			color: #fff
+			font-size: 18px
+			font-weight: 600
+			position: absolute
+			bottom: 25px
+			right: -14px
+			text-decoration: none
+			transition: .7s all ease
+			&:before
+				content: ""
+				position: absolute
+				border-top: 8px solid #ba8f4d
+				border-right: 14px solid transparent
+				right: 0px
+				bottom: -8px
+		&:hover
+			img
+				transform: translateY(-15px)
+			.btn
+				background: #ba8f4d
+				&--dark
+					background: #000
+			h3
+				color: #ba8f4d
+		.abs-p
+			position: absolute
+			bottom: 15px
+			left: 50%
+			margin-left: -50%
+			text-align: center
+			color: #fff
+		h3
+			font-weight: 700
+			font-size: 24px
+			color: orange
+			margin-bottom: 10px
+		p
+			padding: 0 10px
+			border-bottom: 1px dashed #999
+			font-size: 18px
+			font-weight: 600
+		p:first-of-type
+			margin-bottom: 20px
+			border-bottom: none
+			padding: 0
 
+.price-warning
+	text-align: center
+	&:first-of-type
+		margin-top: 40px
+
+.s-review
+	background-repeat: no-repeat
+	background-position: center
+	background-size: cover
 
 .review
 	margin-top: 20px
@@ -834,38 +818,7 @@ $colors: $blue, $red, $accent
 		color: #a9a9a9
 		font-weight: 300
 
-.partners.owl-carousel
-	.partner
-		height: 100%
-		display: flex
-		margin: auto
-	.owl-stage
-		display: flex
-	.owl-item
-		margin-top: 30px
-		img
-			max-width: 100%
-			width: auto
-			display: inline-block
-			margin: auto
-	.owl-nav
-		position: absolute
-		top: 0
-		width: 100%
-		z-index: 2
-		> div
-			position: absolute
-			top: 50px
-			transition: opacity .5s
-			&:hover
-				opacity: .5
-			&.owl-next
-				right: -60px
-			&.owl-prev
-				left: -60px
-			.fa
-				color: #999
-				font-size: 30px
+
 
 .main-footer
 	background-color: #242424
@@ -947,7 +900,7 @@ $colors: $blue, $red, $accent
 				left: 0
 				top: 6px
 				transition: color .25s ease
-				content: '\f219'
+				content: '\f001'
 				font-family: fontawesome
 				margin-right: 8px
 				font-size: 12px
