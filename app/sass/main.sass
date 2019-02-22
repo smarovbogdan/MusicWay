@@ -27,18 +27,6 @@ body
 	opacity: 1
 
 	&.ishome
-		.site-header
-			min-height: 620px
-			height: 100vh
-			background-color: #151515
-			background-repeat: no-repeat
-			background-size: cover
-			background-position: center
-			.top-line
-				padding-top: 40px
-				position: absolute
-				width: 100%
-				z-index: 1
 
 .main-menu
 	text-align: center
@@ -82,20 +70,6 @@ body
 					top: 8px
 
 
-.type-header
-	background-image: url(../img/bg-2.jpg)
-	background-position: 0 22%
-	text-align: center
-	padding: 40px 0
-	h1, h2
-		font-size: 30px
-		text-transform: uppercase
-		font-weight: 800
-		color: $accent
-		margin: 0
-		span
-			color: #fff
-
 section, header
 	position: relative
 	background-color: #fff
@@ -104,6 +78,12 @@ section
 	padding: 5% 0
 	&.inverse
 		color: #fff
+
+ul
+	padding: 0
+	margin: 0
+	list-style-type: none
+
 h2
 	text-transform: uppercase
 	font-size: 30px
@@ -116,28 +96,41 @@ h2
 h1, h2, h3, h4, h5, h6
 	line-height: 1.4
 	text-transform: uppercase
-	&.h-first
-		color: $accent
-		span
-			color: #fff
+.m-auto
+	margin: auto
 
 .mb-30
 	margin-bottom: 20px
 	+media-breakpoint-down(sm)
 		margin-bottom: 10px
 
-.mb-56
+.mb-60
 	margin-bottom: 60px
+	+media-breakpoint-down(sm)
+		margin-bottom: 30px
+
+.m-15
+	+media-breakpoint-down(sm)
+		margin: 15px 0
+
+.mb-40
+	margin: 40px 0
+	+media-breakpoint-down(sm)
+		margin: 20px 0
+
+.mb-20
+	margin-bottom: 20px
 
 .text-center
 	text-align: center
 .text-left
 	text-align: left
 
-.site-header
-	color: #fff
 .accent-c
 	color: $accent
+
+.ml-auto
+	margin-left: auto 
 
 // Mmenu style
 html.mm-opened
@@ -155,7 +148,7 @@ html.mm-opened
 		font-size: 16px
 		padding: 10px
 		@media only screen and (max-width : 1366px)
-			font-size: 14px
+			font-size: 16px
 			padding: 7px
 .mm-panels>.mm-panel>.mm-listview:first-child, .mm-panels>.mm-panel>.mm-navbar+.mm-listview
 	margin-top: 0
@@ -171,7 +164,8 @@ html.mm-opened
 	color: $accent
 .mm-panels>.mm-panel:after, .mm-panels>.mm-panel:before
 	height: 0
-.mm-listview>li>a
+.mm-listview>li>a,
+.mm-listview>li>span
 	padding:
 		left: 14%
 		right: 14%
@@ -184,7 +178,6 @@ html.mm-opened
 			color: $accent
 	&::before
 		transition: color .25s ease
-		// content: '\f025'
 		content: '\f001 '
 		font-family: fontawesome
 		margin-right: 12px
@@ -200,21 +193,21 @@ html.mm-opened
 
 .hamburger
 	right: 0
-	top: 34px
+	top: 40px
 	position: absolute
 
 .mm-navbar
 	height: auto
 	position: relative
-	border: none
+	border-bottom: 1px solid rgba(#fff, .5)
 	.mm-title
-		padding: 0
+		padding: 9px
 		text-align: left
 		img
 			display: inline-block
 			width: 160px
 			height: auto
-			margin: 15px 0 35px
+			margin: 15px 0 10px
 a
 	color: $accent
 a, button
@@ -226,12 +219,51 @@ a, button
 		height: auto
 		margin-left: 40px
 
+.site-header
+	min-height: 700px
+	height: 100vh
+	background-color: #151515
+	color: #fff
+	background-repeat: no-repeat
+	background-size: cover
+	background-position: center
+	display: flex
+	flex-direction: column
+	@media only screen and (max-width : 1366px)
+		height: auto
+	+media-breakpoint-down(lg)
+		background-position: right
+	.top-line
+		flex: 0 0 auto
+		padding-top: 40px
+		width: 100%
+		z-index: 1
+
+.call-back
+	&--phone
+		border: 1px solid $accent
+		border-radius: 10px
+		padding: 2px 14px
+		line-height: 1.3em
+		transition: all .5s
+		font-size: 14px
+		display: inline-block
+		&:hover
+			color: #fff
+			text-decoration: none
+			background: rgba(0,0,0,.4)
+			border-radius: 5px
+	&__item
+		width: 21px
+		height: 21px
+		background: url(../img/request.png) no-repeat
+		margin-right: 10px
+
 .header-flex
 	display: flex
-	height: 100%
 	position: relative
 	top: 0
-
+	flex: 1 0 auto
 
 .header-social
 	display: flex
@@ -242,13 +274,10 @@ a, button
 	border-left: rgba(255,255,255,.06) 1px solid
 	top: 0
 
-.soc
-	margin: auto
-	ul,li
-		margin: 0
-		padding: 0
-		list-style-type: none
-	a
+.social
+	&__item
+		margin: auto		
+	&__link
 		color: #353535
 		font-size: 16px
 		display: block
@@ -262,17 +291,25 @@ a, button
 		margin: 18px 0
 		&:hover
 			background-color: rgba(255,255,255,.4)
+			color: $accent
+		+media-breakpoint-down(lg)
+			width: 32px
+			height: 32px
+			line-height: 32px
+	&__list
+		margin: 0
+		padding: 0
+		list-style-type: none
+		&--inline
+			display: inline-block
+			margin: 3px
+	&__wrap
+		margin: 0
+		padding: 0
+		list-style-type: none
 
-.header-composition
-	text-align: center
-	position: relative
-	p
-		margin-top: 40px
-	.button
-		margin-top: 25px
-
-.welcome
-	p
+.offer
+	&-line
 		font-size: 14px
 		font-weight: 300
 		text-transform: uppercase
@@ -281,8 +318,11 @@ a, button
 		white-space: nowrap
 		margin: 0
 		margin-bottom: -10px
-		span
+		&__line
 			margin: 0 10px
+			+media-breakpoint-down(sm)
+				margin: 0 5px
+				font-size: 10.3px
 		&::before, &::after
 			content: ''
 			height: 1px
@@ -290,7 +330,7 @@ a, button
 			position: relative
 			background-color: #fff
 			display: inline-block
-	h1
+	&__title
 		font-weight: 100
 		text-transform: uppercase
 		font-size: 70px
@@ -298,40 +338,53 @@ a, button
 		line-height: 1.6
 		border-bottom: 1px solid #fff
 		white-space: nowrap
-	strong
-		font-weight: 300
-		text-transform: uppercase
-		font-size: 18px
-		margin-top: 25px
-		display: block
-		.fa
-			margin-right: 10px
-			font-size: 12px
-			color: #555
-			&:last-child
-				margin-right: inherit
-				margin-left: 10px
+		&--page
+			line-height: 1.3
+		+media-breakpoint-down(lg)
+			font-size: 60px
+		+media-breakpoint-down(md)
+			font-size: 48px
+		+media-breakpoint-down(sm)
+			font-size: 28px
+			margin-top: 5px
+	&-text
+		margin-top: 30px
+		&__strong
+			font-weight: 300
+			text-transform: uppercase
+			font-size: 18px
+			margin-top: 25px
+			display: block
+			+media-breakpoint-down(sm)
+				margin-top: 15px
+			.fa
+				margin-right: 10px
+				font-size: 12px
+				color: #555
+				&:last-child
+					margin-right: inherit
+					margin-left: 10px
+		&--page
+			font-size: 18px
+			margin-top: 15px
+			@media only screen and (max-width : 1366px)
+				br
+					display: none
 
 .header-contacts
-	position: absolute
-	bottom: 0
-	left: 0
+	flex: 0 0 auto
 	border-top: rgba(255,255,255,.06) 1px solid
-	padding: 12.5px
+	padding: 12.5px 0
 	width: 100%
 	background-color: rgba(#151515, .15)
 	font-weight: 300
-	font-size: 14px
+	font-size: 16px
 	text-align: center
 	.fa
 		margin-right: 5px
 		color: #555
 	>.container>.row>div:nth-child(2)
 		font-family: firasans
-
-.flex-center
-	margin: auto
-
 
 .top-button
 	position: fixed
@@ -364,7 +417,8 @@ a, button
 	color: #fff
 	text-decoration: none
 	background-color: $accent
-	padding: 16px 45px
+	padding: 12px 35px
+	margin-top: 25px
 	font-size: 13px
 	text-transform: uppercase
 	font-weight: 600
@@ -375,6 +429,9 @@ a, button
 	outline: none
 	cursor: pointer
 	transition: background-color .1s ease
+	&--page
+		margin-bottom: 20px
+		margin-top: 10px
 	&::after
 		transition: background-color .2s ease
 		position: absolute
@@ -481,7 +538,6 @@ select
 .phone
 	position: absolute
 	right: 85px
-	top: 44px
 	font-family: firasans
 	font-size: 20px
 	white-space: nowrap
@@ -490,27 +546,121 @@ select
 		font-size: 22px
 		margin-right: 3px
 
-		
-.section-overlay
-	&::before
-		content: ''
-		position: absolute
-		top: 0
-		left: 0
-		width: 100%
-		height: 100%
-		background-color: #3d3c3c
 
-		opacity: .92
+.call-back
+	&--phone
+		border: 1px solid rgba(#fff, .3)
+		border-radius: 10px
+		padding: 2px 14px
+		line-height: 1.3em
+		transition: all .5s
+		font-size: 14px
+		display: inline-block
+		color: #fff
+		&:hover
+			color: $accent
+			text-decoration: none
+			background: rgba(0,0,0,.4)
+			border-radius: 5px
+	&__item
+		width: 21px
+		height: 21px
+		background: url(../img/request.png) no-repeat
+		margin-right: 10px
+
+
+/* The dropdown */
+.dropdown 
+	overflow: hidden
+	line-height: 1.3
+	border-bottom: 1px solid rgba(#fff, .3)
+	padding: 2px 14px
+	line-height: 1.3em
+	transition: all .5s
+	font-size: 14px
+	margin-right: 15px
+	&:hover
+		color: $accent
+		.dropdown__content 
+			display: block
+		.fa
+			color: $accent
+	
+	.fa
+		color: rgba(#fff, .4)
+		margin-right: 6px
+		transition: all .5s
+
+	&__content 
+		display: none
+		position: absolute
+		left: 0
+		top: 100%
+		background-color: rgba(#3d3c3c, .92)
+		color: #fff
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)
+		z-index: 1
+
+	&__list
+		border-bottom: 1px solid rgba(#fff, .1)
+		transition: all .5s
+		&:hover
+			border-bottom: 1px solid rgba(#fff, .4)
+	&__link
+		float: none
+		color: #fff
+		padding: 12px 16px
+		text-decoration: none
+		display: block
+		text-align: left
+		transition: all .5s
+		&:hover
+			background-color: rgba(#3d3c3c, 1)
+			color: $accent
+			transform: translateX(2px)
+			text-decoration: none
+/* End dropdown  */
+
+		
+.overlay
+	&-section
+		&::before
+			content: ''
+			position: absolute
+			top: 0
+			left: 0
+			width: 100%
+			height: 100%
+			background-color: #3d3c3c
+			opacity: .92
+	&-home
+		+media-breakpoint-down(sm)
+			&::before
+				content: ''
+				position: absolute
+				top: 0
+				left: 0
+				width: 100%
+				height: 100%
+				background-color: #3d3c3c
+				opacity: .72
+	&-advantages
+		&::before
+			content: ''
+			position: absolute
+			top: 0
+			left: 0
+			width: 100%
+			height: 100%
+			background-color: #fff
+			opacity: .92
 	> *
 		position: relative
 
 .s
 
-	&-advantage, &-king, &-review, &-partners,
+	&-advantage, &-our-lessons, &-review, &-partners,
 		background-color: #151515
-		strong
-			color: $accent
 		p
 			margin: 30px 0
 	&-call
@@ -622,6 +772,11 @@ select
 		&::before
 			content: '\f104'
 
+.s-our-lessons
+	background-repeat: no-repeat
+	background-position: center
+	background-size: cover
+
 .quotes
 	position: absolute
 	width: 100%
@@ -666,36 +821,33 @@ select
 .s-specialization
 	background: #eee
 	.mb-40
-		margin-bottom: 40px
-	.wrapper
-		position: relative
-		background: url(../img/texture_dark.jpg) no-repeat center
+		margin-bottom: 0
+	+media-breakpoint-down(sm)
+		.mb-40
+			margin-bottom: 20px
+.wrap-item
+	position: relative
+	background: url(../img/texture_dark.jpg) no-repeat center
+	background-size: cover
+	text-align: center
+	padding: 25px 25px 75px  25px
+	&--light
+		background: url(../img/texture_light.jpg) no-repeat center
 		background-size: cover
-		text-align: center
-		padding: 25px 25px 75px  25px
-		&--light
-			background: url(../img/texture_light.jpg) no-repeat center
-			background-size: cover
-		img
-			transition: .7s all ease
-			width: 100%
-		&:hover
-			img
-				transform: translateY(-15px)
-			.btn
-				background: #ba8f4d
-				&--dark
-					background: #000
-			h3
-				color: #ba8f4d
-	h3
+	&__figure
+		transition: .7s all ease
+		width: 100%
+	&__title
 		margin-top: 20px
 		margin-bottom: 10px
 		color: #fff
 		transition: .7s all ease
+	@media only screen and (max-width : 580px)
+		padding: 10px
 	h2
 		margin-bottom: 20px
-	.btn
+	&__btn
+		display: block
 		padding: 5px 10px
 		background: #c59d5f
 		color: #fff
@@ -705,7 +857,7 @@ select
 		bottom: 25px
 		right: -14px
 		text-decoration: none
-		transition: .7s all ease
+		transition: .2s all 
 		&:before
 			content: ""
 			position: absolute
@@ -717,73 +869,68 @@ select
 			background: #222
 			&:before
 				border-top: 8px solid #000
+		&:hover
+			text-decoration: none
+			color: #fff
+			padding: 5px 10px 5px 15px
+		@media only screen and (max-width : 580px)
+			position: relative
+			bottom: 0
+			right: 0
+			padding: 10px 10px
+			margin-top: 14px
+			&:before
+				display: none
+			&:hover
+				padding: 10px 10px
+	&:hover
+		.wrap-item
+			&__figure
+				transform: translateY(-15px)
+			&__btn
+				background: #ba8f4d
+				&--dark
+					background: #000
+			&__title
+			color: #ba8f4d
 
 
 .s-price
 	background: #e8e8e8
-	.wrapper
-		position: relative
-		background-color: rgba( 255,255,255,0.9)
-		padding: 34px 7px 25px
-		border: 0 solid #000
-		box-shadow: 3px 12px 31px -12px rgba(0,0,0,.75)
-		position: relative
-		color: #404040
-		text-align: center
-		+media-breakpoint-down(sm)
-			margin-bottom: 40px
-		img
-			transition: .7s all ease
-			width: 150px
-			margin-bottom: 20px
-		.btn
-			padding: 5px 20px
-			background: #c59d5f
-			color: #fff
-			font-size: 18px
-			font-weight: 600
-			position: absolute
-			bottom: 25px
-			right: -14px
-			text-decoration: none
-			transition: .7s all ease
-			&:before
-				content: ""
-				position: absolute
-				border-top: 8px solid #ba8f4d
-				border-right: 14px solid transparent
-				right: 0px
-				bottom: -8px
-		&:hover
-			img
+.wrap-price
+	position: relative
+	background-color: rgba( 255,255,255,0.9)
+	padding: 34px 7px 25px
+	border: 0 solid #000
+	box-shadow: 3px 12px 31px -12px rgba(0,0,0,.75)
+	position: relative
+	color: #404040
+	text-align: center
+	+media-breakpoint-down(sm)
+		margin-bottom: 40px
+	&__figure
+		transition: .7s all ease
+		width: 150px
+	&:hover
+		.wrap-price
+			&__figure
 				transform: translateY(-15px)
-			.btn
-				background: #ba8f4d
-				&--dark
-					background: #000
-			h3
+			&__title
 				color: #ba8f4d
-		.abs-p
-			position: absolute
-			bottom: 15px
-			left: 50%
-			margin-left: -50%
-			text-align: center
-			color: #fff
-		h3
-			font-weight: 700
-			font-size: 24px
-			color: orange
-			margin-bottom: 10px
-		p
-			padding: 0 10px
-			border-bottom: 1px dashed #999
-			font-size: 18px
-			font-weight: 600
-		p:first-of-type
-			margin-bottom: 20px
-			border-bottom: none
-			padding: 0
+		.btn
+			background: #ba8f4d
+			&--dark
+				background: #000
+	&__title
+		font-weight: 700
+		font-size: 24px
+		color: orange
+		margin-bottom: 10px
+	&__text
+		padding: 0 10px
+		border-bottom: 1px dashed #999
+		font-size: 18px
+		font-weight: 600
 
 .price-warning
 	text-align: center
@@ -825,93 +972,100 @@ select
 	color: #fff
 	padding: 3% 0
 	font-size: 14px
+	@media only screen and (max-width : 580px)
+		text-align: center
 
-.footer-column
-	margin: 15px 0
-	p
-		position: relative
-		font-size: 15px
-		padding-left: 20px
-		font-weight: 300
-		margin: 0 0 20px
+
+.footer__item
+	position: relative
+	font-size: 15px
+	padding-left: 20px
+	font-weight: 300
+	margin: 0 0 30px
+	.fa
+		position: absolute
+		left: 0
+		top: 5px
+		font-size: 16px
+		color: #797979
+	+media-breakpoint-down(md)
+		margin: 0 0 10px
+	@media only screen and (max-width : 580px)
 		.fa
-			position: absolute
-			left: 0
-			top: 5px
-			font-size: 16px
-			color: #797979
-	.footer-phone
-		font-size: 26px
-		font-family: firasans
-		padding-top: 10px
-		display: block
+			display: none
+.footer-phone
+	font-size: 26px
+	font-family: firasans
+	padding-top: 10px
+	display: block
+	.fa
+		top: 21px
+		font-size: 18px
+	+media-breakpoint-down(md)
+		font-size: 14px
 		.fa
-			top: 21px
-			font-size: 18px
+			top: 14px
+	
 
 .logo-footer
 	width: 128px
 	height: auto
-	+ p
+	&__text
 		color: #777
 		padding: 0
-		margin-bottom: 15px
-		margin-top: 15px
+		margin-bottom: 30px
+		margin-top: 30px
 		font-size: 14px
+		+media-breakpoint-down(lg)
+			margin-bottom: 10px
 
-.social-footer
-	margin-top: 38px
-	opacity: .8
-	.soc
-		li
-			display: inline-block
-			margin: 3px
-			a
-				color: rgba(255,255,255,.6)
-				transition: color .25s ease, background-color .25s ease
-				margin-bottom: 0
-				&:hover
-					color: rgba(255,255,255,.8)
+
+.author
+	&__link
+		display: inline-block
+		margin-bottom: 10px
+		color: #fff
+		text-decoration: underline
+		&:hover
+			color: #fff
+		+media-breakpoint-down(sm)
+			margin-top: 20px
 
 .footer-menu
-	ul
-		padding: 0
-		margin: 0
-		list-style-type: none
-		li.active
-			a
-				color: $accent
-				&::before
-					color: $accent
+	&__active
 		a
-			color: #979797
-			transition: color .25s ease
-			display: inline-block
-			padding: 4px 0
-			text-decoration: underline
-			padding-left: 20px
-			position: relative
-			&:hover, &:focus
-				color: $accent
-				&::before
-					color: $accent
+			color: $accent
 			&::before
-				position: absolute
-				left: 0
-				top: 6px
-				transition: color .25s ease
-				content: '\f001'
-				font-family: fontawesome
-				margin-right: 8px
-				font-size: 12px
-				color: #fff
+				color: $accent
+	&__link
+		font-size: 16px
+		color: #979797
+		transition: color .25s ease
+		display: inline-block
+		padding: 4px 0
+		text-decoration: underline
+		padding-left: 20px
+		position: relative
+		&:hover, &:focus
+			color: $accent
+			&::before
+				color: $accent
+		&::before
+			position: absolute
+			left: 0
+			top: 8px
+			transition: color .25s ease
+			content: '\f001'
+			font-family: fontawesome
+			margin-right: 8px
+			font-size: 12px
+			color: #fff
 
-.map
-	max-height: 200px
-	opacity: .7
-	transition: opacity .5s ease
+		
+.footer-course
+	text-decoration: underline
 	&:hover
-		opacity: 1
+		color: #eee
 
 //Preloader
 .preloader
@@ -962,3 +1116,193 @@ select
 		@include opacity(100)
 
 @import "media" // Всегда в конце
+
+
+.consulting
+	padding: 10px 0 10px 0
+	border-bottom: 2px solid $accent
+	font-size: 18px
+	&__item
+		display: inline-block
+		margin-right: auto
+		color: $accent
+		float: right
+		+media-breakpoint-down(sm)
+			display: none
+	@media only screen and (max-width : 1366px)
+		margin-top: 10px
+
+	+media-breakpoint-down(sm)
+		margin-top: 10px
+
+.page-advantages
+	font-size: 14px
+	&__figure
+		margin-right: 10px
+	&__text
+		margin-bottom: 0
+
+
+////////Second page
+
+.instrument-line
+	display: inline-block
+	width: 125px
+	height: 1px
+	background: #898989
+	&__icon
+		font-size: 30px
+		margin: 0 15px
+		display: inline-block
+		&:hover
+			color: $accent
+		&--accent
+			color: $accent
+			&:hover
+				color: #fff
+
+.fa-icon
+	background: #fdfdfd
+	border-radius: 50%
+	font-size: 32px
+	border: 10px solid #eaeaea
+	width: 74px
+	height: 74px
+	text-align: center
+	line-height: 56px
+	-webkit-transition: -webkit-transform ease-out .5s , background .5s
+	-moz-transition: -moz-transform ease-out .5s , background .5s
+	transition: transform ease-out .5s , background .3s
+	box-shadow: 0 3px 8px #aaa
+	&:hover
+		border: 10px solid $accent
+		background: rgba($accent, .8)
+		color: #fff
+
+.page-advantages
+	background-position: center
+	background-size: cover
+	background-repeat: no-repeat
+
+.timeline
+	padding: $gutter*2 0
+	+media-breakpoint-down(xs)
+		padding: $gutter*2 5%
+	&-item
+		padding: $gutter*1.25 0
+		position: relative
+		&:hover
+			h3
+				color: $accent
+			.fa-icon
+				border: 10px solid $accent
+				background: rgba($accent, .8)
+				color: #fff
+		&::before
+			content: '●'
+			position: absolute
+			width: 1px
+			height: 100%
+			background-color: $gray
+			color: $accent
+			font-size: 28px
+			line-height: 380%
+			text-indent: -8px
+		&:nth-child(odd)
+			text-align: right
+			padding-right: 90+$gutter
+			.timeline-item-img
+				right: $gutter
+			&::before
+				right: 0
+			+media-breakpoint-down(xs)
+				text-align: left
+				padding-left: 100+$gutter
+				padding-right: 0
+				.timeline-item-img
+					left: $gutter*1.5
+				&::before
+					left: 15px
+
+		&:nth-child(even)
+			+make-col-offset(6)
+			padding-left: 90+$gutter
+			.timeline-item-img
+				left: $gutter
+			&::before
+				left: -1px
+			+media-breakpoint-down(xs)
+				+make-col-offset(0)
+				padding-left: 100+$gutter
+				.timeline-item-img
+					left: $gutter*1.5
+				&::before
+					left: 15px
+
+		&-img
+			position: absolute
+			img
+				width: 100%
+		p
+			line-height: 1.4
+			margin: 4px 0 0 0
+			span
+				display: block
+				font-size: 12px
+				color: $accent
+				font-weight: bold
+				margin-top: 5px
+.img-responsive
+	display: block
+	width: 100%
+	height: auto
+	+media-breakpoint-down(sm)
+		margin-bottom: 30px
+
+.timeline-item
+	h3
+		text-transform: none
+
+.teacher
+	background: #282828
+	&__wrap
+		margin-bottom: 90px
+		&:last-child
+			margin-bottom: 0
+		&:nth-child(odd)
+			+media-breakpoint-down(md)
+				div:first-child
+					order: 2
+				div:last-child
+					order: 1
+	&__title
+		font-size: 28px
+		text-transform: none
+		&--right
+			text-align: right
+	&__text
+		font-size: 14px
+		&:last-child
+			margin-bottom: 0
+	&__title,
+	&__text
+		padding-left: 20px
+		+media-breakpoint-down(md)
+			padding-left: 0
+			text-align: center
+	&__title--right,
+	&__text--right
+		padding-right: 20px
+		text-align: right
+		+media-breakpoint-down(md)
+			text-align: center
+			padding-right: 0
+	&__figure
+		box-shadow: 2px 2px 2px rgba(255,255,255,.2)
+		width: 100%
+		height: auto
+		+media-breakpoint-down(md)
+			margin-bottom: 20px
+	&-button
+		margin: 10px 0
+		

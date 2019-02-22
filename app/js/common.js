@@ -41,7 +41,7 @@ $(function() {
 	});
 
 	//Equal Height
-	$('.s-specialization .wrapper').equalHeights();
+	$('.s-specialization .wrap-item').equalHeights();
 
 
 	//E-mail Ajax Send
@@ -66,3 +66,4 @@ $(function() {
 // $(window).on('load', function() {
 // 	$('.preloader').delay(1000).fadeOut('slow');
 // });
+// 
