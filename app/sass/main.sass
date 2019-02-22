@@ -322,7 +322,7 @@ a, button
 			margin: 0 10px
 			+media-breakpoint-down(sm)
 				margin: 0 5px
-				font-size: 10.3px
+				font-size: 10px
 		&::before, &::after
 			content: ''
 			height: 1px
@@ -659,8 +659,10 @@ select
 
 .s
 
-	&-advantage, &-our-lessons, &-review, &-partners,
+	&-advantage, &-our-lessons, &-review
 		background-color: #151515
+		+media-breakpoint-down(lg)
+			padding: 10% 0
 		p
 			margin: 30px 0
 	&-call
@@ -677,6 +679,13 @@ select
 			position: absolute
 			height: 100%
 			background-color: rgba(255,255,255, .82)
+	+media-breakpoint-down(sm)
+		s-call
+			&::before
+				width: 100%
+			.callback
+				padding: 12% 0
+
 	&-partners
 		&::before
 			background-color: #fff
@@ -797,7 +806,9 @@ select
 	&::after
 		right: -60px
 		transform: rotate(0)
-
+	+media-breakpoint-down(sm)
+		&::before, &::after
+			display: none
 .owl-carousel.reviews
 	text-align: center
 	.owl-nav
